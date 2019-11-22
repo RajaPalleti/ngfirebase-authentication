@@ -1,0 +1,1 @@
+# ngfirebase-authentication
