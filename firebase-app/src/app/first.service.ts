@@ -10,4 +10,7 @@ export class FirstService {
   getFirstData(data) {
     return this._httpClient.post(this.apiUrl, data).pipe(map(res => res));
   }
+  getItemsList() {
+    return this._httpClient.get(this.apiUrl).pipe(map(res => res));
+  }
 }

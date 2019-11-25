@@ -16,7 +16,9 @@ export class DashboardComponent implements OnInit {
   public userObj = {};
   constructor(private firstService: FirstService, private fb: FormBuilder) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getItemsList();
+  }
   onSubmit(data) {
     console.log('form data', data);
     this.userObj = data;
@@ -26,6 +28,14 @@ export class DashboardComponent implements OnInit {
   getItems(record) {
     this.firstService.getFirstData(record).subscribe(res => {
       console.log('res', res);
+    });
+  }
+  getItemsList() {
+    this.firstService.getItemsList().subscribe(res => {
+      console.log('reslist', res);
+      // this.items = res;
+      this.items = Object.entries(res).map(list => Object.assign({}, { key: list[0] }, list[1]));
+      console.log('this.items ', this.items );
     });
   }
 }
