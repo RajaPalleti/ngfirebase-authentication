@@ -1,0 +1,31 @@
+<p>
+  dashboard works!
+</p>
+<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+  <div class="form-group">
+    <label for="">Name</label>
+    <input class="form-control" type="text" formControlName="name">
+  </div>
+  <div class="form-group">
+    <label for="">Email</label>
+    <input class="form-control" type="text" formControlName="email">
+  </div>
+  <div class="form-group">
+    <button type="submit">Submit</button>
+  </div>
+</form>
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th>email</th>
+      <th>actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of items;">
+      <td>{{item.name}}</td>
+      <td>{{item.email}}</td>
+    </tr>
+  </tbody>
+</table>
