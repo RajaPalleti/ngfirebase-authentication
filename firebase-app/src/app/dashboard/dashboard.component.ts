@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   getItems(record) {
     this.firstService.getFirstData(record).subscribe(res => {
       console.log('res', res);
+      this.getItemsList();
     });
   }
   getItemsList() {
@@ -37,5 +38,15 @@ export class DashboardComponent implements OnInit {
       this.items = Object.entries(res).map(list => Object.assign({}, { key: list[0] }, list[1]));
       console.log('this.items ', this.items );
     });
+  }
+  onEdit(item) {
+    console.log('edit', item);
+    this.userForm.setValue({
+      name : item.name,
+      email : item.email
+    });
+  }
+  onDelete(item) {
+    this.items.splice(0, 1);
   }
 }

@@ -26,6 +26,8 @@
     <tr *ngFor="let item of items;">
       <td>{{item.name}}</td>
       <td>{{item.email}}</td>
+      <td><a (click)="onEdit(item)">Edit</a></td>
+      <td><a (click)="onDelete(item)">Delete</a></td>
     </tr>
   </tbody>
 </table>
