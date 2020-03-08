@@ -1,11 +1,20 @@
 <p>
   dashboard works!
 </p>
-<form [formGroup]="form" (ngSubmit)="submit(model)">
-    <formly-form [form]="form" [fields]="fields" [model]="model"></formly-form>
-    <button type="submit" class="btn btn-default">Submit</button>
-  </form>
-<table class="table">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+  <div class="form-group">
+    <label for="">Name</label>
+    <input class="form-control" type="text" formControlName="name">
+  </div>
+  <div class="form-group">
+    <label for="">Email</label>
+    <input class="form-control" type="text" formControlName="email">
+  </div>
+  <div class="form-group">
+    <button type="submit">Submit</button>
+  </div>
+</form>
+<table>
   <thead>
     <tr>
       <th>name</th>
@@ -14,13 +23,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let l of list;let ind = index;">
-      <td>{{l.name}}</td>
-      <td>{{l.email}}</td>
-      <td>
-        <a (click)="onEdit(l)">Edit</a>
-        <a (click)="onDelete(ind)">Delete</a>
-      </td>
+    <tr *ngFor="let item of items;">
+      <td>{{item.name}}</td>
+      <td>{{item.email}}</td>
+      <td><a (click)="onEdit(item)">Edit</a></td>
+      <td><a (click)="onDelete(item)">Delete</a></td>
     </tr>
   </tbody>
 </table>
