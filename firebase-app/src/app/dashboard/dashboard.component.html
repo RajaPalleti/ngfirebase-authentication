@@ -1,14 +1,45 @@
 <p>
   dashboard works!
 </p>
-<form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div class="form-group">
     <label for="">Name</label>
     <input class="form-control" type="text" formControlName="name">
+    <div *ngIf="userForm.controls.name.errors && submitted">name is required</div>
   </div>
-  <div class="form-group">
+
+  <div>
     <label for="">Email</label>
-    <input class="form-control" type="text" formControlName="email">
+    <input type="email" formControlName="email">
+    <div *ngIf="userForm.controls.email.errors && submitted">
+      <div *ngIf="userForm.controls.email.errors.required">email is required</div>
+      <div *ngIf="userForm.controls.email.errors.pattern">invalid pattern</div>
+    </div>
+  </div>
+  <div>
+    <label for="">Gender</label>
+    <input type="radio" value="Male" name="gender" formControlName="gender">
+    <input type="radio" value="Female" name="gender" formControlName="gender">
+    <div *ngIf="userForm.controls.gender.errors?.required && submitted">gender required</div>
+  </div>
+  <div>
+    <label for="">Vehicles</label>
+    <div *ngFor="let contol of vehicleArray.controls; let i=index;">
+      <input type="checkbox" id="vehicle{{i}}" (change)="getselectedVehicles()"
+      name="vehicles" value="Bike" [formControl]="contol">
+      <label for="vehicle{{i}}"> {{vehicles[i]}}</label><br>
+
+    </div>
+    <!-- <div>
+      <input type="checkbox" id="vehicle2" name="vehicles" value="Car" formControlName="vehicles">
+      <label for="vehicle2"> I have a car</label><br>
+
+    </div>
+    <div>
+      <input type="checkbox" id="vehicle3" name="vehicles" value="Boat" formControlName="vehicles">
+      <label for="vehicle3"> I have a boat</label>
+    </div> -->
+    <div *ngIf="vehicleError">select vehicles required</div>
   </div>
   <div class="form-group">
     <button type="submit">Submit</button>

@@ -11,10 +11,7 @@ export class LoginComponent implements OnInit {
   submitted: any = false;
   loginForm = this.fb.group({
     userName: ['', Validators.required],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')]],
-    gender: ['', Validators.required],
-    vehicles: ['', Validators.required]
+    password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   constructor(private router: Router, private fb: FormBuilder) {
@@ -34,8 +31,8 @@ export class LoginComponent implements OnInit {
     }
     console.log('loginForm2', this.loginForm);
     console.log('loginFormValid', this.loginForm.valid);
+    this.router.navigate(['dashboard']);
     // if (formData.firstName === 'username' && formData.lastName === 'password') {
-    //   this.router.navigate(['dashboard']);
     // }
   }
 }
